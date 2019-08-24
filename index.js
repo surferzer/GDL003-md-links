@@ -44,7 +44,7 @@ convertMd(readMd('./README.md'));
 const cheerio = require ('cheerio');
 
 const htmlMd = convertMd(readMd('./README.md'));
-//let fileUrl="";
+const fileUrlAcumulado=[];
 const findLinksHtml=(htmlMd) => {
  // if((typeof htmlMd !== 'undefined')){
       let $ = cheerio.load(htmlMd);
@@ -52,24 +52,17 @@ const findLinksHtml=(htmlMd) => {
       //console.log(anchorTag);
       // Links
       $(anchorTag).each((i, a) =>{
-         let fileUrl= $(a).attr('href');
-         return console.log(fileUrl.toString());
+         const fileUrl= $(a).attr('href');
+       
+         fileUrlAcumulado.push(fileUrl);
+         
          //console.log(fileUrl);
       })
-  //  linkList(fileUrl);
-   // }else{
-   //  console.log('este archivo no es un html');
-   // };
- 
+      return console.log(fileUrlAcumulado);
 };
+findLinksHtml(htmlMd);
 
-
-
-const resultado = findLinksHtml(htmlMd)
-
-
-
-
+//console.log("ESTO ES EL ACUMULADO", fileUrlAcumulado);
 //VALIDACION DE LINKS
 
 //intento #1
@@ -108,11 +101,7 @@ getAllStatusCodeResult(thereAreLinks); */
 const axios = require ('axios');
 
  const linkList=()=>{ 
-
-  //let resultado =  findLinksHtml(htmlMd);
-  console.log("ESTÁ MANDANDO ESTA DATA" , resultado);
-
- axios.get('http://www.cannabisyyis.net') 
+   axios.get(fileUrlAcumulado[2]) 
   .then((data) => console.log((data.status) + " OK " + " ESTE LINK ESTA FUNCIONANDO" ))
 
   .catch(function (error) {
@@ -129,4 +118,16 @@ const axios = require ('axios');
   }
   )};
 
-  console.log(linkList());
+  linkList();
+  
+
+  //INTENTO CON FETCH
+  /*validateLinks = (fileUrlAcumulado) =>{
+    fetch(fileUrlAcumulado)
+    .then((response)=> console.log(response.status));
+  }
+    .catch(err){
+      return err
+    };
+   
+  */

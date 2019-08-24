@@ -126,11 +126,6 @@ Si pasamos la opción --validate, el módulo debe hacer una petición HTTP para 
 
 Por ejemplo:
 
-$ md-links ./some/example.md --validate
-./some/example.md http://algo.com/2/3/ ok 200 Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html fail 404 algún doc
-./some/example.md http://google.com/ ok 301 Google
-
 Vemos que el output en este caso incluye la palabra ok o fail después de la URL, así como el status de la respuesta recibida a la petición HTTP a dicha URL.
 --stats
 
@@ -244,4 +239,4 @@ Hacker Edition
     Puedes agregar la propiedad line a cada objeto link indicando en qué línea del archivo se encontró el link.
     Puedes agregar más estadísticas.
     Integración continua con Travis o Circle CI.
-http://cannabis.net
+http://cannabisyeeeiiiii.net
