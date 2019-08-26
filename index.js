@@ -100,34 +100,21 @@ getAllStatusCodeResult(thereAreLinks); */
 
 const axios = require ('axios');
 
- const linkList=()=>{ 
-   axios.get(fileUrlAcumulado[2]) 
-  .then((data) => console.log((data.status) + " OK " + " ESTE LINK ESTA FUNCIONANDO" ))
-
+const allLinks= [];
+//const linkList=(fileUrlAcumulado)=>{  
+  for(let i=0; i<fileUrlAcumulado.length; i++) 
+axios.get(
+   fileUrlAcumulado[i]
+ ).then((data) => console.log((data.status) + " OK " + " ESTE LINK ESTA FUNCIONANDO" ))
   .catch(function (error) {
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-     
-      console.log(error.response.status);
+           console.log(error.response.status);
     } else {
-      // Something happened in setting up the request that triggered an Error
-     console.log("404 BROKEN LINK " + '\n'+error.message);
+           console.log("404 BROKEN LINK " + '\n'+error.message);
     }
     console.log(error.config);
+    //return allLinks.toString();
   }
-  )};
-
-  linkList();
-  
-
-  //INTENTO CON FETCH
-  /*validateLinks = (fileUrlAcumulado) =>{
-    fetch(fileUrlAcumulado)
-    .then((response)=> console.log(response.status));
-  }
-    .catch(err){
-      return err
-    };
+  );
    
-  */
+//linkList();
