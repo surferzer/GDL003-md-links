@@ -1,16 +1,18 @@
-const filePath = require('../');
+const filePath = require('../index.js');
 
 
+//TEST PARA QUE EL ARCHIVO SEA .MD
 describe('filePath.getExtFiles', () => {
   it('should return true for a .md file', () => {
-    expect(filePath('../README.md')).toBe(true);
+    expect(filePath.thisFile('./README.md')).toBe(true);
   });
 });
 
 
 
-describe ('showDoc.readFileSync', ()=> {
-  it('should return a file', ()=>{
-    expect(showDoc('../README.md')).toBe(showDoc.toString());
-  });
-});
+
+//TEST PARA LEER EL ARCHIVO .MD
+describe ('filePath.readFileSync', ()=> {
+  it('should read a md file', ()=>{
+    expect(filePath.readMd('./README.md')).toBe("Markdown es un lenguaje de marcado ligero muy popular entre developers.");
+})});

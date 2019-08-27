@@ -1,8 +1,31 @@
-//import { fstat } from "fs";
+/*//import { fstat } from "fs";
 
-//module.exports = () => {
-  // ...
-//};
+module.exports = () => {
+
+  //COMPROBAR QUE SEA MD
+
+  const thisFile=(filePath)=>{
+    if (path.extname(filePath)==='.md')
+  {return true;
+  }else{
+    return false;
+  }
+  };
+  
+  console.log(thisFile("./README.md"));
+  
+  //LEER ARCHIVO MD
+  
+  const readMd =(filePath)=>{
+   let openMd= fs.readFileSync(filePath)
+    return openMd.toString();
+  };
+  console.log(readMd('./README.md'));
+  
+};*/
+
+
+
 const fs = require('fs');
 const path= require('path');
 
@@ -15,17 +38,22 @@ const thisFile=(filePath)=>{
 }
 };
 
-//console.log(thisFile("./README.md"));
+console.log(thisFile("./README.md"));
 
 //LEER ARCHIVO MD
 
 const readMd =(filePath)=>{
  let openMd= fs.readFileSync(filePath)
+ 
   return openMd.toString();
 };
-//console.log(readMd('./README.md'));
+console.log(readMd('./README.md'));
 
+module.exports = {
+  readMd: readMd,
+  thisFile : thisFile
 
+}
 //CONVERTIR MD A HTML
 const marked = require('marked');
 
@@ -117,4 +145,6 @@ axios.get(
   }
   );
    
-//linkList();
+
+
+
