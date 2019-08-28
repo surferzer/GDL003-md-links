@@ -1,31 +1,8 @@
 /*//import { fstat } from "fs";
 
 module.exports = () => {
-
-  //COMPROBAR QUE SEA MD
-
-  const thisFile=(filePath)=>{
-    if (path.extname(filePath)==='.md')
-  {return true;
-  }else{
-    return false;
-  }
-  };
-  
-  console.log(thisFile("./README.md"));
-  
-  //LEER ARCHIVO MD
-  
-  const readMd =(filePath)=>{
-   let openMd= fs.readFileSync(filePath)
-    return openMd.toString();
-  };
-  console.log(readMd('./README.md'));
-  
-};*/
-
-
-
+*/
+ 
 const fs = require('fs');
 const path= require('path');
 
@@ -38,22 +15,18 @@ const thisFile=(filePath)=>{
 }
 };
 
-console.log(thisFile("./README.md"));
+//console.log(thisFile("./README.md"));
 
 //LEER ARCHIVO MD
 
 const readMd =(filePath)=>{
  let openMd= fs.readFileSync(filePath)
- 
+
   return openMd.toString();
 };
-console.log(readMd('./README.md'));
+//console.log(readMd('./README.md'));
 
-module.exports = {
-  readMd: readMd,
-  thisFile : thisFile
 
-}
 //CONVERTIR MD A HTML
 const marked = require('marked');
 
@@ -65,13 +38,14 @@ const html = marked.parser(tokens);
 //console.log(html);
 return html
 };
-convertMd(readMd('./README.md'));
+//convertMd(readMd('./README.md'));
+
 
 
 //BUSCAR LINKS EN EL HTML
 const cheerio = require ('cheerio');
 
-const htmlMd = convertMd(readMd('./README.md'));
+const htmlMd = convertMd(readMd('./README1.md'));
 const fileUrlAcumulado=[];
 const findLinksHtml=(htmlMd) => {
  // if((typeof htmlMd !== 'undefined')){
@@ -86,9 +60,16 @@ const findLinksHtml=(htmlMd) => {
          
          //console.log(fileUrl);
       })
-      return console.log(fileUrlAcumulado);
+      return fileUrlAcumulado;
 };
 findLinksHtml(htmlMd);
+
+
+
+
+
+
+
 
 //console.log("ESTO ES EL ACUMULADO", fileUrlAcumulado);
 //VALIDACION DE LINKS
@@ -129,22 +110,45 @@ getAllStatusCodeResult(thereAreLinks); */
 const axios = require ('axios');
 
 const allLinks= [];
-//const linkList=(fileUrlAcumulado)=>{  
+const linkList=(fileUrlAcumulado)=>{  
   for(let i=0; i<fileUrlAcumulado.length; i++) 
 axios.get(
    fileUrlAcumulado[i]
- ).then((data) => console.log((data.status) + " OK " + " ESTE LINK ESTA FUNCIONANDO" ))
+ ).then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO"))
   .catch(function (error) {
     if (error.response) {
-           console.log(error.response.status);
-    } else {
-           console.log("404 BROKEN LINK " + '\n'+error.message);
+          // console.log(error.response.status);
+           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ")   
+        } else {
+           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ");
     }
-    console.log(error.config);
-    //return allLinks.toString();
+    //console.log(error.config);
+    return allLinks;
   }
-  );
-   
+  )};
+   linkList(fileUrlAcumulado);
 
+  module.exports = {
+    readMd: readMd,
+    thisFile : thisFile,
+    convertMd : convertMd,
+  findLinksHtml : findLinksHtml,
+  linkList : linkList
+  }
+  
 
+  //FUNCION CONTAR LINKS
+  const notWorking=[];
+  const working=[];
+  const countW=0;
+  const countNw=0;
 
+  const counter=(linkList)=>{
+  if(linkList[i]==(fileUrlAcumulado[i] + " OK " + " ESTE LINK ESTA FUNCIONANDO")){
+ console.log(countW=countW++);
+ console.log(working.push);
+  }else{
+    console.log(countNw=countNw++);
+    console.log(notWorking.push);
+  }};
+console.log(counter);

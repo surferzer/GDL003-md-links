@@ -9,10 +9,49 @@ describe('filePath.getExtFiles', () => {
 });
 
 
-
-
 //TEST PARA LEER EL ARCHIVO .MD
 describe ('filePath.readFileSync', ()=> {
   it('should read a md file', ()=>{
     expect(filePath.readMd('./README.md')).toBe("Markdown es un lenguaje de marcado ligero muy popular entre developers.");
+})});
+
+/*
+//TEST PARA CONVERTIR .MD EN HTML
+describe ('filePath.marked', ()=> {
+  it('should return a html', ()=>{
+    console.log(filePath.convertMd('./README.md'))
+    expect(filePath.convertMd('./README.md')).toBe('<p>./README.md</p>');
+})});
+*/
+
+
+/*
+//TEST PARA BUSCAR LINKS EN EL HTML
+describe ('filePath.cheerio', ()=> {
+  it('should return a html', ()=>{    
+     expect(filePath.findLinksHtml('./README1.md')).toBe([ 'http://www.google.com' ]);
+})});
+*/
+
+
+//TEST PARA VALIDAR LINKS
+describe ('filePath.axios', ()=> {
+  it('should validate all links', ()=>{    
+     expect(filePath.linkList('./README1.md')).toBe([[ 'http://www.google.com' ]
+     429
+     
+     { url: 'http://www.google.com',
+       method: 'get',
+       headers: 
+        { Accept: 'application/json, text/plain, */*',
+          'User-Agent': 'axios/0.19.0' },
+       transformRequest: [ [Function: transformRequest] ],
+       transformResponse: [ [Function: transformResponse] ],
+       timeout: 0,
+       adapter: [Function: httpAdapter],
+       xsrfCookieName: 'XSRF-TOKEN',
+       xsrfHeaderName: 'X-XSRF-TOKEN',
+       maxContentLength: -1,
+       validateStatus: [Function: validateStatus],
+       data: undefined }]);
 })});
