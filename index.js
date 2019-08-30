@@ -80,9 +80,9 @@ axios.get(
   .catch(function (error) {
     if (error.response) {
                 // console.log(error.response.status);
-          console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE))   
+          console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE))   
         } else {
-           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE));
+           console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE));
     }
     //console.log(error.config);
     
