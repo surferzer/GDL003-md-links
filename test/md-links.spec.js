@@ -37,21 +37,6 @@ describe ('filePath.cheerio', ()=> {
 //TEST PARA VALIDAR LINKS
 describe ('filePath.axios', ()=> {
   it('should validate all links', ()=>{    
-     expect(filePath.linkList('./README1.md')).toBe([[ 'http://www.google.com' ]
-     429
+     expect(filePath.linkList('./README1.md')).toBe(
      
-     { url: 'http://www.google.com',
-       method: 'get',
-       headers: 
-        { Accept: 'application/json, text/plain, */*',
-          'User-Agent': 'axios/0.19.0' },
-       transformRequest: [ [Function: transformRequest] ],
-       transformResponse: [ [Function: transformResponse] ],
-       timeout: 0,
-       adapter: [Function: httpAdapter],
-       xsrfCookieName: 'XSRF-TOKEN',
-       xsrfHeaderName: 'X-XSRF-TOKEN',
-       maxContentLength: -1,
-       validateStatus: [Function: validateStatus],
-       data: undefined }]);
 })});

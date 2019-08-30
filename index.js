@@ -2,17 +2,16 @@
 
 module.exports = () => {
 */
- 
 const fs = require('fs');
 const path= require('path');
 
 //QUE EL ARCHIVO SEA .MD
 const thisFile=(filePath)=>{
   if (path.extname(filePath)==='.md')
-{return true;
-}else{
-  return false;
-}
+     {return true;
+  }else{
+     return false;
+     }
 };
 
 //console.log(thisFile("./README.md"));
@@ -20,8 +19,7 @@ const thisFile=(filePath)=>{
 //LEER ARCHIVO MD
 
 const readMd =(filePath)=>{
- let openMd= fs.readFileSync(filePath)
-
+  let openMd= fs.readFileSync(filePath)
   return openMd.toString();
 };
 //console.log(readMd('./README.md'));
@@ -35,7 +33,7 @@ const tokens = marked.lexer(file);
 //console.log(tokens);
 
 const html = marked.parser(tokens);
-console.log(html);
+//console.log(html);
 return html
 };
 //convertMd(readMd('./README.md'));
@@ -65,12 +63,46 @@ const findLinksHtml=(htmlMd) => {
 findLinksHtml(htmlMd);
 
 
+//FUNCION VALIDAR PARA PRUEBAS
+
+const axios = require ('axios');
+
+const colors = require('colors');
+
+var counter=0;
+var counterE=0;
+const allLinks= [];
+const linkList=(fileUrlAcumulado)=>{  
+  for(let i=0; i<fileUrlAcumulado.length; i++) 
+axios.get(
+   fileUrlAcumulado[i]
+ ) .then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO ".blue, counter=counter+1) + console.log("Total de links VALIDADOS ".rainbow, + (counter)))
+  .catch(function (error) {
+    if (error.response) {
+                // console.log(error.response.status);
+          console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE))   
+        } else {
+           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE));
+    }
+    //console.log(error.config);
+    
+  })
+  return allLinks;
+ 
+};
+
+   linkList(fileUrlAcumulado);
 
 
 
-
-
-
+  module.exports = {
+    readMd: readMd,
+    thisFile : thisFile,
+    convertMd : convertMd,
+  findLinksHtml : findLinksHtml,
+  linkList : linkList
+  }
+  
 //console.log("ESTO ES EL ACUMULADO", fileUrlAcumulado);
 //VALIDACION DE LINKS
 
@@ -133,45 +165,6 @@ console.log(allLinks);
 */
 
 
-//FUNCION VALIDAR PARA PRUEBAS
-
-const axios = require ('axios');
-
-var counter=0;
-var counterE=0;
-const allLinks= [];
-const linkList=(fileUrlAcumulado)=>{  
-  for(let i=0; i<fileUrlAcumulado.length; i++) 
-axios.get(
-   fileUrlAcumulado[i]
- ).then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO", counter=counter+1) + console.log("Total de links validados " + (counter)))
-  .catch(function (error) {
-    if (error.response) {
-                // console.log(error.response.status);
-          console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ", counterE=counterE+1)   
-        } else {
-           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ", counterE=counterE+1);
-    }
-    //console.log(error.config);
-    
-  })
-  return allLinks;
-};
-   linkList(fileUrlAcumulado);
-
-
-
-
-
-
-  module.exports = {
-    readMd: readMd,
-    thisFile : thisFile,
-    convertMd : convertMd,
-  findLinksHtml : findLinksHtml,
-  linkList : linkList
-  }
-  
 /*
   //FUNCION CONTAR LINKS
   const notWorking=[];
