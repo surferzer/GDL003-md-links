@@ -35,7 +35,7 @@ const tokens = marked.lexer(file);
 //console.log(tokens);
 
 const html = marked.parser(tokens);
-//console.log(html);
+console.log(html);
 return html
 };
 //convertMd(readMd('./README.md'));
@@ -104,8 +104,8 @@ const getAllStatusCodeResult = (websites) => {
   })
 }
 getAllStatusCodeResult(thereAreLinks); */
-
-//intento #2 con axios
+/*
+//FUNCION PARA VALIDAR LINKS EXITOSA
 
 const axios = require ('axios');
 
@@ -114,19 +114,55 @@ const linkList=(fileUrlAcumulado)=>{
   for(let i=0; i<fileUrlAcumulado.length; i++) 
 axios.get(
    fileUrlAcumulado[i]
- ).then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO"))
+ ).then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO", counter++))
   .catch(function (error) {
     if (error.response) {
           // console.log(error.response.status);
-           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ")   
+          // console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ")   
         } else {
            console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ");
     }
     //console.log(error.config);
-    return allLinks;
-  }
-  )};
+    
+  }); 
+  return allLinks;
+};
    linkList(fileUrlAcumulado);
+
+console.log(allLinks);
+*/
+
+
+//FUNCION VALIDAR PARA PRUEBAS
+
+const axios = require ('axios');
+
+var counter=0;
+var counterE=0;
+const allLinks= [];
+const linkList=(fileUrlAcumulado)=>{  
+  for(let i=0; i<fileUrlAcumulado.length; i++) 
+axios.get(
+   fileUrlAcumulado[i]
+ ).then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO", counter=counter+1) + console.log("Total de links validados " + (counter)))
+  .catch(function (error) {
+    if (error.response) {
+                // console.log(error.response.status);
+          console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ", counterE=counterE+1)   
+        } else {
+           console.log(fileUrlAcumulado[i] + "    Fail BROKEN LINK ", counterE=counterE+1);
+    }
+    //console.log(error.config);
+    
+  })
+  return allLinks;
+};
+   linkList(fileUrlAcumulado);
+
+
+
+
+
 
   module.exports = {
     readMd: readMd,
@@ -136,7 +172,7 @@ axios.get(
   linkList : linkList
   }
   
-
+/*
   //FUNCION CONTAR LINKS
   const notWorking=[];
   const working=[];
@@ -144,11 +180,14 @@ axios.get(
   const countNw=0;
 
   const counter=(linkList)=>{
-  if(linkList[i]==(fileUrlAcumulado[i] + " OK " + " ESTE LINK ESTA FUNCIONANDO")){
- console.log(countW=countW++);
- console.log(working.push);
+    for(let n=0; n<allLinks.length; n++) {
+  
+      if(allLinks[n]===(fileUrlAcumulado[i] + "    Fail BROKEN LINK ")){
+ notWorking=allLinks[n].push;
+ countNw= countNw++;
   }else{
-    console.log(countNw=countNw++);
-    console.log(notWorking.push);
-  }};
-console.log(counter);
+   console.log(working=allLinks[n].push);
+   console.log(countW=countW++);
+  }}};
+console.log(counter(linkList));
+*/
