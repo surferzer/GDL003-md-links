@@ -31,7 +31,7 @@ describe ('filePath.cheerio', ()=> {
   it('should return a html', ()=>{    
      expect(filePath.findLinksHtml('./README1.md')).toBe([ 'http://www.google.com' ]);
 })});
-*/
+
 
 
 //TEST PARA VALIDAR LINKS
@@ -40,3 +40,4 @@ describe ('filePath.axios', ()=> {
      expect(filePath.linkList('./README1.md')).toBe(
      
 })});
+*/
