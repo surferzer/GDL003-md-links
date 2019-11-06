@@ -73,20 +73,28 @@ var counter=0;
 var counterE=0;
 const allLinks= [];
 const linkList=(fileUrlAcumulado)=>{  
-  for(let i=0; i<fileUrlAcumulado.length; i++) 
-axios.get(
+  for(let i=0; i<fileUrlAcumulado.length; i++) {
+
+  axios.get(
    fileUrlAcumulado[i]
- ) .then((data) => console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO ".blue, counter=counter+1) + console.log("Total de links VALIDADOS ".rainbow, + (counter)))
+ ).then((data) => {
+   counter = counter + 1;
+    console.log(fileUrlAcumulado[i] + "    Ok " + " ESTE LINK ESTA FUNCIONANDO ".blue, counter) + console.log("Total de links VALIDADOS ".rainbow, + (counter))
+  })
   .catch(function (error) {
+    counterE = counterE + 1;
     if (error.response) {
                 // console.log(error.response.status);
-          console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE))   
+          console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE) + console.log("Total de links FALLIDOS ".rainbow, + (counterE))   
         } else {
-           console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE=counterE+1) + console.log("Total de links FALLIDOS ".rainbow, + (counterE));
+           console.log(fileUrlAcumulado[i] + "    Fail " + " BROKEN LINK ".red, counterE) + console.log("Total de links FALLIDOS ".rainbow, + (counterE));
     }
     //console.log(error.config);
     
   })
+
+
+  }
   return allLinks;
  
 };

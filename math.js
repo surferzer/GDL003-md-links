@@ -49,10 +49,11 @@ console.log(math.divide(40, 0));
 
 
  //test
-
+/*
 const mdLinks= require('../);
 
 it('should return true for a valid.md file', (mdLinks) =>{
     expect(mdLInks('../README.md').toBe(true);
 })
 
+*/
