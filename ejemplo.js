@@ -98,6 +98,15 @@ console.log(comparing());
 */
 
 
+
+
+
+
+
+
+
+
+
 //RETO TECNICO
 
 let names = ["maria", "juana", "alexandra", "ximena", "rosario", "ana"]
@@ -136,3 +145,49 @@ function comparing() {
 }
 console.log(comparing());
 */
+
+/*
+//segunda palabra mas larga
+
+function words() {
+       let longestWord = "";
+       names.forEach(name => {
+              if (name.length > longestWord.length)
+                     longestWord = name;
+
+       })
+       for (var i = names.length; i--;) {
+              if (names[i] === longestWord) {
+                     names.splice(i, 1);
+              }
+       }
+       array = names;
+       let long = "";
+       array.forEach(name => {
+              if (name.length > long.length)
+                     long = name;
+
+       })
+       return long;
+}
+
+console.log(words());
+*/
+
+
+//segunda palabra mas corta
+
+
+function comparing() {
+    
+
+       let shortWord = names.reduce(function (shortest, word) {
+              if (word.length < shortest.length)
+                     return word;
+              else
+                     return shortest;
+       })
+       return shortWord;
+}
+
+console.log(comparing());
